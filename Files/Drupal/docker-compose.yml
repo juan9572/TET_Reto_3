@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  drupal:
+    image: drupal:latest
+    privileged: true
+    ports:
+      - "80:80"
+    environment:
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=drupal
+    volumes:
+      - drupal-data:/var/www/html
+      - nfs-data:/var/www/html/sites/default/nfs_share
+    restart: always
+volumes:
+  drupal-data:
+  nfs-data:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=54.156.248.189,vers=4,soft
+      device: ":/shared_folder"
