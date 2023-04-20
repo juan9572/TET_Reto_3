@@ -12,7 +12,7 @@
 4. [Arquitectura de despliegue](#arquitectura-de-despliegue)
 
 6. [Paso a paso del despliegue](#paso-a-paso-del-despliegue)
-	 - [1. Pre-requisitos](#pre-requisitos)
+	 - [Pre-requisitos](#pre-requisitos)
 	 - [Configurando Docker](#configurando-docker)
 	 - [Base de datos de MARIADB](#base-de-datos-de-mariadb)
 	 - [FileServer NFS](#fileserver-nfs)
@@ -50,7 +50,7 @@ La arquitectura de la solución desplegada se compone de tres capas. La primera 
 ## Paso a paso del despliegue
 ---
 
-### 1. Pre-requisitos
+### Pre-requisitos
 
 Cada uno de estos pre-requisitos es fundamental para asegurar el correcto funcionamiento de la solución desplegada, por lo que es importante llevar a cabo estos pasos antes de comenzar con el despliegue de la aplicación web.
 
@@ -66,7 +66,7 @@ Una vez tengamos listo estos requisitos, deberemos tener algo similar a esto:
 ![Ip elasticas](https://raw.githubusercontent.com/juan9572/TET_Reto_3/main/Img/Requisitos/Ip%20elasticas.png)
 ![Proxy](https://raw.githubusercontent.com/juan9572/TET_Reto_3/main/Img/Requisitos/SecurityGroups.png)
 
-### 2. Configurando Docker
+### Configurando Docker
 Para instalar Docker en cada instancia, accedemos a cada una de ellas excepto a la del servidor de NFS, y ejecutamos los siguientes pasos. Es importante mencionar que estos pasos están basados en la documentación oficial de Docker para [Ubuntu](https://docs.docker.com/desktop/install/ubuntu/), pero pueden variar dependiendo del sistema operativo utilizado.
 
 A continuación se presentan los pasos para instalar Docker en una instancia Ubuntu:
@@ -113,7 +113,7 @@ sudo docker run hello-world
 ```
 Ahora deberías tener Docker listo para ser ejecutado, empezaremos configurando desde los módulos menos dependientes a los más dependientes, es importante tener en cuenta que estos pasos son específicos para Ubuntu, pero los pasos para otras distribuciones de Linux son similares. Se recomienda seguir siempre la documentación oficial para la instalación de Docker en cualquier plataforma.
 
-### 3. Base de datos de MARIADB
+### Base de datos de MARIADB
 Se utilizará MariaDB como base de datos para la aplicación web Drupal. Se explicará cómo instalar MariaDB y cómo configurar las credenciales de acceso para la aplicación web.
 1. Descarga la imagen oficial de MariaDB desde Docker Hub ejecutando el siguiente comando:
 ```bash
@@ -133,7 +133,7 @@ Cuando ingresemos haremos lo siguiente:
 ![userDB](https://raw.githubusercontent.com/juan9572/TET_Reto_3/main/Img/MariaDB/MariaDB-3.png)
 El paso que acabamos de realizar fue acceder a la consola de MariaDB en el contenedor de la base de datos y crear una base de datos para nuestro sitio web Drupal. También hemos buscado las credenciales del usuario que interactúa con la base de datos.
 
-### 4. FileServer NFS
+### FileServer NFS
 
 La configuración del sistema de archivos de red (NFS) es esencial para garantizar que los servidores de Drupal puedan compartir los mismos archivos. NFS es una tecnología que permite compartir sistemas de archivos entre diferentes sistemas operativos a través de una red. En esta sección, se detallará cómo configurar un servidor NFS y cómo montarlo en los servidores de Drupal.
 
@@ -160,7 +160,7 @@ sudo chmod 777 /shared_folder
 ```bash
 sudo systemctl restart nfs-kernel-server
 ```
-### 5. Drupal
+### Drupal
 
 En esta sección, explicaremos cómo configurar Drupal en nuestro entorno de AWS, utilizando las instancias EC2 que hemos creado previamente, así como el servidor de base de datos y el NFS.
 1. Creamos una carpeta donde tendremos nuestros archivos de Docker con el siguiente comando:
@@ -239,7 +239,7 @@ Esto significa que ya esta listo el NFS.
 ![DrupalSecondInstance](https://raw.githubusercontent.com/juan9572/TET_Reto_3/main/Img/Drupal/Drupal-4.png)
 Le daremos **ver sitio existente** y podemos seguir con los demás pasos para poder terminar de instalar y configurar nuestro Drupal.
 
-### 6. Dominio web
+### Dominio web
 
 Configuraremos un nombre de dominio con un proveedor de DNS y conectaremos ese dominio a nuestra instancia de balanceador de carga que nos redirigirá a los servers de Drupal.
 
@@ -258,7 +258,7 @@ Vamos a eliminar todos los que estén activos y crearemos 2 tipos de Records:
 Cabe recalcar que en el A Record en el campo **Value** se coloca la ip de nuestro balanceador de carga.
  ![RecordsDNS](https://raw.githubusercontent.com/juan9572/TET_Reto_3/main/Img/SSL%20y%20Https/DOMAIN-4.png)
 
-### 7. Balanceador de carga
+### Balanceador de carga
 
  En esta sección, vamos a configurar un balanceador de carga para distribuir el tráfico de nuestro sitio web entre los servidores que hemos configurado previamente.
  
