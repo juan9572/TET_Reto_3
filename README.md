@@ -12,7 +12,7 @@
 4. [Arquitectura de despliegue](#arquitectura-de-despliegue)
 
 6. [Paso a paso del despliegue](#paso-a-paso-del-despliegue)
-	 - [Pre-requisitos](#pre-requisitos)
+	 - [1. Pre-requisitos](#pre-requisitos)
 	 - [Configurando Docker](#configurando-docker)
 	 - [Base de datos de MARIADB](#base-de-datos-de-mariadb)
 	 - [FileServer NFS](#fileserver-nfs)
@@ -50,7 +50,7 @@ La arquitectura de la solución desplegada se compone de tres capas. La primera 
 ## Paso a paso del despliegue
 ---
 
-### Pre-requisitos
+### 1. Pre-requisitos
 
 Cada uno de estos pre-requisitos es fundamental para asegurar el correcto funcionamiento de la solución desplegada, por lo que es importante llevar a cabo estos pasos antes de comenzar con el despliegue de la aplicación web.
 
