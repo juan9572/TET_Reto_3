@@ -50,7 +50,7 @@ La arquitectura de la solución desplegada se compone de tres capas. La primera 
 ## Paso a paso del despliegue
 ---
 
-### 1. Pre-requisitos
+### Pre-requisitos
 
 Cada uno de estos pre-requisitos es fundamental para asegurar el correcto funcionamiento de la solución desplegada, por lo que es importante llevar a cabo estos pasos antes de comenzar con el despliegue de la aplicación web.
 
